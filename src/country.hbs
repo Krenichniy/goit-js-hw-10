@@ -1,0 +1,45 @@
+  {{!-- name.official - полное имя страны
+capital - столица
+population - население
+flags.svg - ссылка на изображение флага
+languages - массив языков --}}
+  
+  
+  <div class="card">
+  <div class="card-img-top">
+    <img src="{{flags.svg}}" alt="{{name.official}}"  />
+    <h1>{{name.official}}</h1>
+  </div>
+
+  <div class="card-body">
+    <p class="card-text">Capital: {{capital}}</p>
+    <p class="card-text">Population: {{population}}</p>
+    <p class="card-text">Languages:{{languages}}</p>
+
+  </div>
+</div>
+
+
+
+{{!-- export function createMarkupCard(countries) {
+  return countries
+    .map(country => {
+      const {
+        name: { official },
+        capital,
+        population,
+        flags: { svg },
+        languages,
+      } = country;
+      const languagesStr = Object.values(languages).join(',');
+
+      return `<div class="country-info__head"><img src="${svg}" alt="${official}" width=50>
+      <p class="country-info__name">${official}</p></div>
+        <ul class="country-info__list">
+          <li class="country-info__item"><span>Capital:</span>${capital}</li>
+          <li class="country-info__item"><span>Population:</span>${population}</li>
+          <li class="country-info__item"><span>Languages:</span>${languagesStr}</li>
+        </ul>`;
+    })
+    .join('');
+} --}}
