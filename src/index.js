@@ -81,7 +81,7 @@ function createCountryItem(countries) {
 function renderCountryItem(countries) {
   refs.countryList.innerHTML = createCountryInfo(countries);
 }
-
+// add country card
 function createCountryInfo(countries) {
   return countries
     .map(country => {
