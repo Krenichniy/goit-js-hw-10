@@ -13,18 +13,14 @@ const refs = {
 
 refs.onCountrySearch.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
 
-function searchCountry(event) {
-  const form = event.target.value;
-  //   console.log(form);
+function searchCountry({ target: { value } }) {
+  const form = value.trim();
 
-  //   const searchCountryName = form.elements.pokemon.value;
+  if (!form) {
+    return;
+  }
 
   fetchCountries(form).then(render).catch(onFetchError);
-  // .then(renderCountryCard);
-  //.then(data => console.log(data));
-  //
-
-  //
 }
 
 function render(countries) {
