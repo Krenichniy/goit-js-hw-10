@@ -13,8 +13,10 @@ const refs = {
 
 refs.onCountrySearch.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
 
+// function that searches country on user input
 function searchCountry({ target: { value } }) {
   const form = value.trim();
+  clearMarkup();
 
   if (!form) {
     return;
@@ -23,6 +25,7 @@ function searchCountry({ target: { value } }) {
   fetchCountries(form).then(render).catch(onFetchError);
 }
 
+// function that renders  countries list or exact country dependes of quatity of entered symbols on user input
 function render(countries) {
   clearMarkup();
 
@@ -35,11 +38,11 @@ function render(countries) {
     renderCountryItem(countries);
   }
 }
-
+// function that renders  countries list
 function renderCountryList(countries) {
   refs.countryList.innerHTML = createCountryItem(countries);
 }
-
+// function that add litener to the  countries list
 function onCountryList(countries) {
   const items = document.querySelectorAll('.country-list__item');
   items.forEach(item => item.addEventListener('click', onCountryItem));
@@ -57,7 +60,7 @@ function onCountryList(countries) {
     items.forEach(item => item.removeEventListener('click', onCountryItem));
   }
 }
-
+// function that creates  country list markup
 function createCountryItem(countries) {
   return countries
     .map(country => {
@@ -73,11 +76,11 @@ function createCountryItem(countries) {
     })
     .join('');
 }
-
+// function that renders country list item
 function renderCountryItem(countries) {
   refs.countryList.innerHTML = createCountryInfo(countries);
 }
-// add country card
+// add country card markup
 function createCountryInfo(countries) {
   return countries
     .map(country => {
@@ -106,11 +109,11 @@ function createCountryInfo(countries) {
     })
     .join('');
 }
-
+// function that acts on response error
 function onFetchError(error) {
-  return error(Notiflix.Notify.failure('Oops, there is no country with that name'));
+  Notiflix.Notify.failure('Oops, there is no country with that name');
 }
-
+// function that cleans markup
 function clearMarkup() {
   refs.countryList.innerHTML = '';
   refs.countryInfo.innerHTML = '';
